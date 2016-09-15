@@ -11,7 +11,7 @@ namespace MemoryUnitTest
         public void GameShouldDetectGamewin()
         {
             //Arrenge
-            MemoryGame mg = new MemoryGame(4,4);
+            MemoryGame mg = new MemoryGame(2,1);
 
             //Act
             

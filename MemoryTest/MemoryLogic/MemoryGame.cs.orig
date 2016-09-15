@@ -9,13 +9,15 @@ namespace MemoryLogic
 {
     public class MemoryGame
     {
-        
+<<<<<<< HEAD
+=======
         enum Gamestate
         {
             Running,
             Won
         }
         Gamestate state;
+>>>>>>> origin/Testnstuff
         private bool Check = false;
         public int SizeX { get; }
         public int SizeY { get; }
@@ -93,8 +95,8 @@ namespace MemoryLogic
                 lastOpened.Add(coord);
                 if(lastOpened.Count == 2)
                     Moves++;
+<<<<<<< HEAD
             }
-            
             Check = false;
             for (int X = 0; X < SizeX; X++)
             {
@@ -105,12 +107,26 @@ namespace MemoryLogic
                         Check = true;
                     }
                 }
-                if (!Check)
-                    state = Gamestate.Won;
             }
+            if (!Check)
+                GameWon();
+=======
+            }
+            Check = false;
+            for (int X = 0; X < SizeX; X++)
+            {
+                for (int Y = 0; Y < SizeY; Y++)
+                {
+                    if (!_board[X, Y].IsFound)
+                    {
+                        Check = true;
+                    }
+                }
+            }
+            if (!Check)
+                state = Gamestate.Won;
+>>>>>>> origin/Testnstuff
          }
-
-    
 
         private void GameWon()
         {

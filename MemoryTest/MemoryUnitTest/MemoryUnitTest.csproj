@@ -61,6 +61,7 @@
     <Compile Include="MovementTests.cs" />
     <Compile Include="ClickCoordinateTests.cs" />
     <Compile Include="DrawBoardTests.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
