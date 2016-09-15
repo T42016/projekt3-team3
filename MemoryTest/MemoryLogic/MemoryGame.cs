@@ -10,6 +10,13 @@ namespace MemoryLogic
     public class MemoryGame
     {
         private bool Check = false;
+        enum Gamestate
+        {
+            Running,
+            Won
+        }
+        Gamestate state;
+        private bool Check = false;
         public int SizeX { get; }
         public int SizeY { get; }
         public int Moves { get; private set; }
@@ -21,6 +28,7 @@ namespace MemoryLogic
             SizeY = sizeY;
             _board = new PositionInfo[sizeX, sizeY];
             ResetBoard();
+            state = Gamestate.Running;
         }
 
         private PositionInfo[,] _board;
@@ -95,6 +103,26 @@ namespace MemoryLogic
                     {
                         Check = true;
                     }
+                }
+            }
+            Check = false;
+            for (int X = 0; X < SizeX; X++)
+            {
+                for (int Y = 0; Y < SizeY; Y++)
+                {
+                    if (!_board[X, Y].IsFound)
+                    {
+                        Check = true;
+                    }
+            if (!Check)
+                state = Gamestate.Won;
+         }
+
+        private void GameWon()
+        {
+            Console.WriteLine("You won");
+            Console.ReadLine();
+            ResetBoard();
                 }
             }
             if (!Check)
