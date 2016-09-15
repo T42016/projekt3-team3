@@ -4,22 +4,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MemoryLogic;
 
 namespace MemoryLogic
 {
     public class MemoryGame
     {
-        
+<<<<<<< HEAD
+=======
         enum Gamestate
         {
             Running,
             Won
         }
-        private static char[] symbols = { '*', '!', 'w', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o' };
         Gamestate state;
-        private static int posX = 0;
-        private static int posY = 0;
+>>>>>>> origin/Testnstuff
         private bool Check = false;
         public int SizeX { get; }
         public int SizeY { get; }
@@ -59,7 +57,6 @@ namespace MemoryLogic
                     };
                     values.RemoveAt(index);
                 }
-            DrawBoard();
         }
 
         public PositionInfo GetCoordinate(int x, int y)
@@ -98,8 +95,8 @@ namespace MemoryLogic
                 lastOpened.Add(coord);
                 if(lastOpened.Count == 2)
                     Moves++;
+<<<<<<< HEAD
             }
-            
             Check = false;
             for (int X = 0; X < SizeX; X++)
             {
@@ -110,69 +107,26 @@ namespace MemoryLogic
                         Check = true;
                     }
                 }
-                if (!Check)
-                    state = Gamestate.Won;
             }
-         }
-        public void Uppdate()
-        {
-                var key = Console.ReadKey();
-            if (HasMismatch)
-            {
-                CloseMismatch();
-
+            if (!Check)
+                GameWon();
+=======
             }
-            if (key.Key == ConsoleKey.LeftArrow && posX > 0)
-                    posX--;
-                if (key.Key == ConsoleKey.RightArrow && posX < SizeX - 1)
-                    posX++;
-                if (key.Key == ConsoleKey.UpArrow && posY > 0)
-                    posY--;
-                if (key.Key == ConsoleKey.DownArrow && posY < SizeY - 1)
-                    posY++;
-                if (key.Key == ConsoleKey.R)
-                    ResetBoard();
-                if (key.Key == ConsoleKey.Spacebar)
-                    ClickCoordinate(posX, posY);
-            
-            DrawBoard();
-            
-        }
-        public void DrawBoard()
-        {
-            Console.Clear();
-
-            
-            for (int y = 0; y < SizeY; y++)
+            Check = false;
+            for (int X = 0; X < SizeX; X++)
             {
-                for (int x = 0; x < SizeX; x++)
+                for (int Y = 0; Y < SizeY; Y++)
                 {
-                    if (x == posX && y == posY)
-                        Console.BackgroundColor = ConsoleColor.DarkCyan;
-                    else
-                        Console.BackgroundColor = ConsoleColor.Black;
-
-                    var info = GetCoordinate(x, y);
-                    if (info.IsOpen)
+                    if (!_board[X, Y].IsFound)
                     {
-                        Console.ForegroundColor = info.IsFound ? ConsoleColor.Green : ConsoleColor.Cyan;
-                        Console.Write(symbols[info.Value] + " ");
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Gray;
-                        Console.Write(". ");
+                        Check = true;
                     }
                 }
-                Console.WriteLine();
             }
-            Console.ForegroundColor = ConsoleColor.Gray;
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.WriteLine("Moves: " + Moves);
-            if (HasMismatch)
-                Console.WriteLine("Press any key");
-        }
-
+            if (!Check)
+                state = Gamestate.Won;
+>>>>>>> origin/Testnstuff
+         }
 
         private void GameWon()
         {

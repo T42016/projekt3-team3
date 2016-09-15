@@ -61,11 +61,15 @@
     <Compile Include="MovementTests.cs" />
     <Compile Include="ClickCoordinateTests.cs" />
     <Compile Include="DrawBoardTests.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MemoryLogic\MemoryLogic.csproj">
+<<<<<<< 0a58e3355691117b02749114c5cd9bb9ea7a0a0f
+      <Project>{FB79F3A1-BD0E-43D8-8205-5ADA6EACF2EC}</Project>
+      <Name>MemoryLogic</Name>
+    </ProjectReference>
+=======
       <Project>{fb79f3a1-bd0e-43d8-8205-5ada6eacf2ec}</Project>
       <Name>MemoryLogic</Name>
     </ProjectReference>
@@ -76,15 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MemoryLogic\MemoryLogic.csproj">
-      <Project>{FB79F3A1-BD0E-43D8-8205-5ADA6EACF2EC}</Project>
-      <Name>MemoryLogic</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+>>>>>>> FIxed gamewin
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
