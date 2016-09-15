@@ -9,9 +9,10 @@ namespace MemoryLogic
 {
     public class MemoryGame
     {
+        private bool Check = false;
         public int SizeX { get; }
         public int SizeY { get; }
-        public int Draws { get; private set; }
+        public int Moves { get; private set; }
         public bool HasMismatch => lastOpened.Count == 2;
          
         public MemoryGame(int sizeX, int sizeY)
@@ -29,7 +30,7 @@ namespace MemoryLogic
         {
             Random rnd = new Random();
             List<int> values = new List<int>();
-            Draws = 0;
+            Moves = 0;
 
             for (int i = 0; i < SizeX*SizeY; i++)
                 values.Add(i/2);
@@ -77,14 +78,34 @@ namespace MemoryLogic
                 coord.IsFound = true;
                 lastOpened.First().IsFound = true;
                 lastOpened.Clear();
-                Draws++;
+                Moves++;
             }
             else
             {
                 lastOpened.Add(coord);
                 if(lastOpened.Count == 2)
-                    Draws++;
+                    Moves++;
             }
+            Check = false;
+            for (int X = 0; X < SizeX; X++)
+            {
+                for (int Y = 0; Y < SizeY; Y++)
+                {
+                    if (!_board[X, Y].IsFound)
+                    {
+                        Check = true;
+                    }
+                }
+            }
+            if (!Check)
+                GameWon();
+         }
+
+        private void GameWon()
+        {
+            Console.WriteLine("You won");
+            Console.ReadLine();
+            ResetBoard();
         }
     }
 }

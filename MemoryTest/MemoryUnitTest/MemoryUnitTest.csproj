@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FakeItEasy, Version=2.2.0.0, Culture=neutral, PublicKeyToken=eff28e2146d5fd2c, processorArchitecture=MSIL">
+      <HintPath>..\packages\FakeItEasy.2.2.0\lib\net40\FakeItEasy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -53,10 +57,24 @@
   </Choose>
   <ItemGroup>
     <Compile Include="GetCoordinateTests.cs" />
+    <Compile Include="GamestateTests.cs" />
     <Compile Include="MovementTests.cs" />
     <Compile Include="ClickCoordinateTests.cs" />
     <Compile Include="DrawBoardTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MemoryLogic\MemoryLogic.csproj">
+      <Project>{fb79f3a1-bd0e-43d8-8205-5ada6eacf2ec}</Project>
+      <Name>MemoryLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MemoryTest\MemoryTest.csproj">
+      <Project>{03247d2d-1d67-4c38-90a7-48766693b23f}</Project>
+      <Name>MemoryTest</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MemoryLogic\MemoryLogic.csproj">
