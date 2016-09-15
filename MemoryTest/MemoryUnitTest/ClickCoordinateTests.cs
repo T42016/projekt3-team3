@@ -33,47 +33,49 @@ namespace MemoryUnitTest
             // Arrange via Setup
 
             // Act
-            _underTest.ClickCoordinate(1,1);
+            _underTest.ClickCoordinate();
 
             // Assert
-            Assert.AreEqual(true, _underTest.GetCoordinate(1,1).IsOpen);
+            Assert.AreEqual(true, _underTest.GetCoordinate(_underTest.posX, _underTest.posY).IsOpen);
         }
 
         [TestMethod]
         public void ClickCoordinateShouldNotCloseOpenedCoordinate()
         {
             // Arrange
-            _underTest.ClickCoordinate(1,1);
+            _underTest.ClickCoordinate();
 
             // Act
-            _underTest.ClickCoordinate(1,1);
+            _underTest.ClickCoordinate();
 
             // Assert
-            Assert.AreEqual(true, _underTest.GetCoordinate(1,1).IsOpen);
+            Assert.AreEqual(true, _underTest.GetCoordinate(_underTest.posX, _underTest.posY).IsOpen);
         }
 
         [TestMethod]
         public void ClickCoordinateShouldAddOntoDraws()
         {
             // Arrange
-            var draws = _underTest.Draws;
+            var moves = _underTest.Moves;
 
             // Act
-            _underTest.ClickCoordinate(2,2);
+            _underTest.ClickCoordinate();
 
             // Assert
-            Assert.AreEqual(draws + 1, _underTest.Draws + 1);
+            Assert.AreEqual(moves + 1, _underTest.Moves + 1);
         }
 
         [TestMethod]
         public void ClickCoordinateShouldSetCoordinatesToIsFoundIfMatched()
         {
             // Arrange
-            var game = new MemoryGame(2,1);
-
+            var game = new MemoryGame(2, 1);
+            
             // Act
-            game.ClickCoordinate(0,0);
-            game.ClickCoordinate(1,0);
+            game.ClickCoordinate();
+            game.Update(ConsoleKey.RightArrow);
+            
+            game.ClickCoordinate();
 
             // Assert
             Assert.AreEqual(true, game.GetCoordinate(0, 0).IsFound);

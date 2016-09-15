@@ -18,9 +18,9 @@ namespace MemoryLogic
         }
         private static char[] symbols = { '*', '!', 'w', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o' };
         Gamestate state;
-        private static int posX = 0;
-        private static int posY = 0;
-        private bool Check = false;
+        public int posX { get; private set; }
+        public int posY { get; private set; }
+        private bool check = false;
         public int SizeX { get; }
         public int SizeY { get; }
         public int Moves { get; private set; }
@@ -59,6 +59,10 @@ namespace MemoryLogic
                     };
                     values.RemoveAt(index);
                 }
+
+            posY = 0;
+            posX = 0;
+
             DrawBoard();
         }
 
@@ -79,9 +83,9 @@ namespace MemoryLogic
             lastOpened.Clear();
         }
 
-        public void ClickCoordinate(int x, int y)
+        public void ClickCoordinate()
         {
-            var coord = GetCoordinate(x, y);
+            var coord = GetCoordinate(posX, posY);
             if (coord.IsOpen || lastOpened.Count == 2)
                 return;
 
@@ -99,41 +103,40 @@ namespace MemoryLogic
                 if(lastOpened.Count == 2)
                     Moves++;
             }
-            
-            Check = false;
+
+            check = false;
             for (int X = 0; X < SizeX; X++)
             {
                 for (int Y = 0; Y < SizeY; Y++)
                 {
                     if (!_board[X, Y].IsFound)
                     {
-                        Check = true;
+                        check = true;
                     }
                 }
-                if (!Check)
+                if (!check)
                     state = Gamestate.Won;
             }
-         }
-        public void Uppdate()
+        }
+        public void Update(ConsoleKey key)
         {
-                var key = Console.ReadKey();
             if (HasMismatch)
             {
                 CloseMismatch();
 
             }
-            if (key.Key == ConsoleKey.LeftArrow && posX > 0)
+            if (key == ConsoleKey.LeftArrow && posX > 0)
                     posX--;
-                if (key.Key == ConsoleKey.RightArrow && posX < SizeX - 1)
+            if (key == ConsoleKey.RightArrow && posX < SizeX - 1)
                     posX++;
-                if (key.Key == ConsoleKey.UpArrow && posY > 0)
+            if (key == ConsoleKey.UpArrow && posY > 0)
                     posY--;
-                if (key.Key == ConsoleKey.DownArrow && posY < SizeY - 1)
+            if (key == ConsoleKey.DownArrow && posY < SizeY - 1)
                     posY++;
-                if (key.Key == ConsoleKey.R)
+            if (key == ConsoleKey.R)
                     ResetBoard();
-                if (key.Key == ConsoleKey.Spacebar)
-                    ClickCoordinate(posX, posY);
+            if (key == ConsoleKey.Spacebar)
+                    ClickCoordinate();
             
             DrawBoard();
             
