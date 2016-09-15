@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MemoryLogic;
 
 namespace MemoryLogic
 {
@@ -15,7 +16,10 @@ namespace MemoryLogic
             Running,
             Won
         }
+        private static char[] symbols = { '*', '!', 'w', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o' };
         Gamestate state;
+        private static int posX = 0;
+        private static int posY = 0;
         private bool Check = false;
         public int SizeX { get; }
         public int SizeY { get; }
@@ -55,6 +59,7 @@ namespace MemoryLogic
                     };
                     values.RemoveAt(index);
                 }
+            DrawBoard();
         }
 
         public PositionInfo GetCoordinate(int x, int y)
@@ -109,8 +114,65 @@ namespace MemoryLogic
                     state = Gamestate.Won;
             }
          }
+        public void Uppdate()
+        {
+                var key = Console.ReadKey();
+            if (HasMismatch)
+            {
+                CloseMismatch();
 
-    
+            }
+            if (key.Key == ConsoleKey.LeftArrow && posX > 0)
+                    posX--;
+                if (key.Key == ConsoleKey.RightArrow && posX < SizeX - 1)
+                    posX++;
+                if (key.Key == ConsoleKey.UpArrow && posY > 0)
+                    posY--;
+                if (key.Key == ConsoleKey.DownArrow && posY < SizeY - 1)
+                    posY++;
+                if (key.Key == ConsoleKey.R)
+                    ResetBoard();
+                if (key.Key == ConsoleKey.Spacebar)
+                    ClickCoordinate(posX, posY);
+            
+            DrawBoard();
+            
+        }
+        public void DrawBoard()
+        {
+            Console.Clear();
+
+            
+            for (int y = 0; y < SizeY; y++)
+            {
+                for (int x = 0; x < SizeX; x++)
+                {
+                    if (x == posX && y == posY)
+                        Console.BackgroundColor = ConsoleColor.DarkCyan;
+                    else
+                        Console.BackgroundColor = ConsoleColor.Black;
+
+                    var info = GetCoordinate(x, y);
+                    if (info.IsOpen)
+                    {
+                        Console.ForegroundColor = info.IsFound ? ConsoleColor.Green : ConsoleColor.Cyan;
+                        Console.Write(symbols[info.Value] + " ");
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Gray;
+                        Console.Write(". ");
+                    }
+                }
+                Console.WriteLine();
+            }
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.WriteLine("Moves: " + Moves);
+            if (HasMismatch)
+                Console.WriteLine("Press any key");
+        }
+
 
         private void GameWon()
         {
