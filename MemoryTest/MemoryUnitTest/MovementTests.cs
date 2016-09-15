@@ -6,9 +6,6 @@ namespace MemoryUnitTest
     [TestClass]
     public class MovementTests
     {
-        [TestMethod]
-        public void TestMethod1()
-        {
-        }
+       
     }
 }

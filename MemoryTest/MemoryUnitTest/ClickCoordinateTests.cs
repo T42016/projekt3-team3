@@ -6,9 +6,6 @@ namespace MemoryUnitTest
     [TestClass]
     public class ClickCoordinateTests
     {
-        [TestMethod]
-        public void TestMethod1()
-        {
-        }
+        
     }
 }
