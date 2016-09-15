@@ -20,7 +20,7 @@ namespace MemoryTest
             {
                 Console.Clear();
                 DrawBoard();
-                Console.WriteLine("Draws: " + game.Draws);
+                Console.WriteLine("Draws: " + game.Moves);
                 if (game.HasMismatch)
                     Console.WriteLine("Press any key");
 
