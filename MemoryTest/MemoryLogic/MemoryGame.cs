@@ -118,6 +118,7 @@ namespace MemoryLogic
                     state = Gamestate.Won;
             }
         }
+
         public void Update(ConsoleKey key)
         {
             if (HasMismatch)
