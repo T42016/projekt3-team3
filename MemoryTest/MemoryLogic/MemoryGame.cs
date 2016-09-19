@@ -64,6 +64,7 @@ namespace MemoryLogic
             posX = 0;
 
             DrawBoard();
+            
         }
 
         public PositionInfo GetCoordinate(int x, int y)

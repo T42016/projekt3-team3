@@ -85,7 +85,7 @@ namespace MemoryUnitTest
         [TestMethod]
         public void ClickCoordinateShouldNotSetCoordinatesToIsFoundIfMissmatched()
         {
-            // Arrange
+            // Arrange<
             
             // Act
             
