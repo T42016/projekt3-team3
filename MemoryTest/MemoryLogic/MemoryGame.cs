@@ -17,7 +17,7 @@ namespace MemoryLogic
             Won
         }
         private static char[] symbols = { '*', '!', 'w', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o' };
-        public Gamestate state;
+        public Gamestate state { get; private set; }
         public int posX { get; private set; }
         public int posY { get; private set; }
         private bool allFound = false;
