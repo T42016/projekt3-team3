@@ -16,7 +16,7 @@ namespace MemoryLogic
             Won
         }
 
-        private static char[] symbols = { '*', '!', 'w', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o' };
+        public static char[] symbols { get; private set; } = { '*', '!', 'w', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o' };
         public Gamestate state { get; private set; }
         public int posX { get; private set; }
         public int posY { get; private set; }
@@ -31,12 +31,14 @@ namespace MemoryLogic
             SizeX = sizeX;
             SizeY = sizeY;
             _board = new PositionInfo[sizeX, sizeY];
+            _drawBoard = new DrawBoard(this);
             ResetBoard();
             state = Gamestate.Running;
         }
 
         private PositionInfo[,] _board;
         private List<PositionInfo> lastOpened = new List<PositionInfo>();
+        private readonly DrawBoard _drawBoard;
 
         public void ResetBoard()
         {
@@ -65,7 +67,7 @@ namespace MemoryLogic
 
             state = Gamestate.Running;
 
-            DrawBoard();
+            _drawBoard.Draw();
         }
 
         public PositionInfo GetCoordinate(int x, int y)
@@ -140,42 +142,8 @@ namespace MemoryLogic
                     ResetBoard();
             if (key == ConsoleKey.Spacebar)
                     ClickCoordinate();
-            
-            DrawBoard();
-        }
 
-        public void DrawBoard()
-        {
-            Console.Clear();
-            
-            for (int y = 0; y < SizeY; y++)
-            {
-                for (int x = 0; x < SizeX; x++)
-                {
-                    if (x == posX && y == posY)
-                        Console.BackgroundColor = ConsoleColor.DarkCyan;
-                    else
-                        Console.BackgroundColor = ConsoleColor.Black;
-
-                    var info = GetCoordinate(x, y);
-                    if (info.IsOpen)
-                    {
-                        Console.ForegroundColor = info.IsFound ? ConsoleColor.Green : ConsoleColor.Cyan;
-                        Console.Write(symbols[info.Value] + " ");
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Gray;
-                        Console.Write(". ");
-                    }
-                }
-                Console.WriteLine();
-            }
-            Console.ForegroundColor = ConsoleColor.Gray;
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.WriteLine("Moves: " + Moves);
-            if (HasMismatch)
-                Console.WriteLine("Press any key");
+            _drawBoard.Draw();
         }
 
         private void GameWon()
