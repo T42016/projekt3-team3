@@ -5,19 +5,22 @@ using MemoryLogic;
 namespace MemoryUnitTest
 {
     [TestClass]
-    public class GamestateTests
+    public class GameStateTests
     {
         [TestMethod]
-        public void GameShouldDetectGamewin()
+        public void AllFoundShouldSetGameStateToWon()
         {
-            //Arrenge
-            MemoryGame mg = new MemoryGame(2,1);
+            // Arrange
+            var game = new MemoryGame(2, 1);
 
-            //Act
-            
-            //Assert
-            
+            // Act
+            game.ClickCoordinate();
+            game.Update(ConsoleKey.RightArrow);
+
+            game.ClickCoordinate();
+
+            // Assert
+            Assert.AreEqual(MemoryGame.Gamestate.Won, game.state);
         }
-
     }
 }

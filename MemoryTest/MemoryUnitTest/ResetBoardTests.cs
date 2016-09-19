@@ -6,7 +6,7 @@ namespace MemoryUnitTest
 {
     [TestClass]
     public class ResetBoardTests
-        {
+    {
         [TestMethod]
         public void ResetBoardShouldSetGameStateToRunning()
         {
@@ -26,6 +26,5 @@ namespace MemoryUnitTest
             //Assert
             Assert.AreNotEqual(state, game.state);
         }
-
     }
 }
