@@ -11,16 +11,16 @@ namespace MemoryLogic
     public class MemoryGame
     {
         
-        enum Gamestate
+        public enum Gamestate
         {
             Running,
             Won
         }
         private static char[] symbols = { '*', '!', 'w', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o' };
-        Gamestate state;
+        public Gamestate state;
         public int posX { get; private set; }
         public int posY { get; private set; }
-        private bool check = false;
+        private bool allFound = false;
         public int SizeX { get; }
         public int SizeY { get; }
         public int Moves { get; private set; }
@@ -63,8 +63,9 @@ namespace MemoryLogic
             posY = 0;
             posX = 0;
 
+            state = Gamestate.Running;
+
             DrawBoard();
-            
         }
 
         public PositionInfo GetCoordinate(int x, int y)
@@ -105,19 +106,21 @@ namespace MemoryLogic
                     Moves++;
             }
 
-            check = false;
+            allFound = true;
             for (int X = 0; X < SizeX; X++)
             {
                 for (int Y = 0; Y < SizeY; Y++)
                 {
                     if (!_board[X, Y].IsFound)
                     {
-                        check = true;
+                        allFound = false;
                     }
                 }
-                if (!check)
-                    state = Gamestate.Won;
+                
             }
+
+            if (allFound)
+                state = Gamestate.Won;
         }
 
         public void Update(ConsoleKey key)

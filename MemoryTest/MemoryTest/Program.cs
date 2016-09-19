@@ -9,21 +9,22 @@ namespace MemoryTest
 {
     class Program
     {
-        
-        static MemoryGame game = new MemoryGame(4, 4);
-
+        static MemoryGame game = new MemoryGame(2, 2);
 
         static void Main(string[] args)
         {
-            while (true)
+            while (game.state == MemoryGame.Gamestate.Running || game.state == MemoryGame.Gamestate.Won)
             {
                 var key = Console.ReadKey();
                 game.Update(key.Key);
+
+                if (game.state == MemoryGame.Gamestate.Won)
+                {
+                    Console.WriteLine("Press any key to restart!");
+                    Console.ReadKey();
+                    game.Update(ConsoleKey.R);
+                }
             }
-
-        }     
-
-        
-
+        }    
     }
 }
