@@ -9,7 +9,7 @@ namespace MemoryTest
 {
     class Program
     {
-        static MemoryGame game = new MemoryGame(2, 2);
+        static MemoryGame game = new MemoryGame(4, 4);
 
         static void Main(string[] args)
         {

@@ -1,5 +1,4 @@
 ﻿using System;
-using FakeItEasy;
 using MemoryLogic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -8,18 +7,19 @@ namespace MemoryUnitTest
     [TestClass]
     public class DrawBoardTests
     {
+        private MemoryGame _underTest;
+
         [TestInitialize]
         public void Setup()
         {
-            MemoryGame _underTest = new MemoryGame(2,2);
-            var fakeGame = A.Fake<MemoryGame>();
+            _underTest = new MemoryGame(2,2);
         }
 
         [TestMethod]
-        public void DrawBoardShouldDoThings()
+        public void DrawBoardShouldDrawUnOpenedPositions()
         {
-            // Arrange via Setup
-
+            // Arrange
+            
             // Act
 
             // Assert
