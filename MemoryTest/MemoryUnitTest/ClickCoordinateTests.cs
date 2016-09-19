@@ -85,12 +85,28 @@ namespace MemoryUnitTest
         [TestMethod]
         public void ClickCoordinateShouldNotSetCoordinatesToIsFoundIfMissmatched()
         {
-            // Arrange<
+            // Arrange
             
             // Act
             
             // Assert
             Assert.AreEqual(true, false);
+        }
+
+        [TestMethod]
+        public void ClickCoordinateShouldBeAbleToWin()
+        {
+            // Arrange
+            var game = new MemoryGame(2,1);
+
+            // Act
+            game.ClickCoordinate();
+            game.Update(ConsoleKey.RightArrow);
+
+            game.ClickCoordinate();
+
+            // Assert
+            Assert.AreEqual(MemoryGame.Gamestate.Won, game.state);
         }
     }
 }
