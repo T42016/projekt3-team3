@@ -10,12 +10,12 @@ namespace MemoryLogic
 {
     public class MemoryGame
     {
-        
         public enum Gamestate
         {
             Running,
             Won
         }
+
         private static char[] symbols = { '*', '!', 'w', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o' };
         public Gamestate state { get; private set; }
         public int posX { get; private set; }
@@ -126,10 +126,8 @@ namespace MemoryLogic
         public void Update(ConsoleKey key)
         {
             if (HasMismatch)
-            {
                 CloseMismatch();
 
-            }
             if (key == ConsoleKey.LeftArrow && posX > 0)
                     posX--;
             if (key == ConsoleKey.RightArrow && posX < SizeX - 1)
@@ -144,12 +142,11 @@ namespace MemoryLogic
                     ClickCoordinate();
             
             DrawBoard();
-            
         }
+
         public void DrawBoard()
         {
             Console.Clear();
-
             
             for (int y = 0; y < SizeY; y++)
             {
@@ -180,7 +177,6 @@ namespace MemoryLogic
             if (HasMismatch)
                 Console.WriteLine("Press any key");
         }
-
 
         private void GameWon()
         {
