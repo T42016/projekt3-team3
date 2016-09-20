@@ -1,9 +1,11 @@
 ﻿using System;
 
+
 namespace MemoryLogic
 {
     public class DrawBoard
     {
+        
         private MemoryGame _memoryGame;
 
         public DrawBoard(MemoryGame memoryGame)
@@ -13,7 +15,7 @@ namespace MemoryLogic
 
         public void Draw()
         {
-            Console.Clear();
+            _memoryGame.Draw.Clear();
             
             for (int y = 0; y < _memoryGame.SizeY; y++)
             {
@@ -28,21 +30,21 @@ namespace MemoryLogic
                     if (info.IsOpen)
                     {
                         Console.ForegroundColor = info.IsFound ? ConsoleColor.Green : ConsoleColor.Cyan;
-                        Console.Write(MemoryGame.symbols[info.Value] + " ");
+                        _memoryGame.Draw.Write(MemoryGame.symbols[info.Value] + " ");
                     }
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Gray;
-                        Console.Write(". ");
+                        _memoryGame.Draw.Write(". ");
                     }
                 }
                 Console.WriteLine();
             }
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.BackgroundColor = ConsoleColor.Black;
-            Console.WriteLine("Moves: " + _memoryGame.Moves);
+            _memoryGame.Draw.WriteLine("Moves: " + _memoryGame.Moves);
             if (_memoryGame.HasMismatch)
-                Console.WriteLine("Press any key");
+                _memoryGame.Draw.WriteLine("Press any key");
         }
     }
 }

@@ -16,6 +16,7 @@ namespace MemoryLogic
             Won
         }
 
+        public ISB Draw;
         public static char[] symbols { get; private set; } = { '*', '!', 'w', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o' };
         public Gamestate state { get; private set; }
         public int posX { get; private set; }
@@ -26,8 +27,9 @@ namespace MemoryLogic
         public int Moves { get; private set; }
         public bool HasMismatch => lastOpened.Count == 2;
          
-        public MemoryGame(int sizeX, int sizeY)
+        public MemoryGame(int sizeX, int sizeY, ISB draw)
         {
+            Draw = draw;
             SizeX = sizeX;
             SizeY = sizeY;
             _board = new PositionInfo[sizeX, sizeY];
@@ -42,7 +44,7 @@ namespace MemoryLogic
 
         public void ResetBoard()
         {
-            Random rnd = new Random();
+           
             List<int> values = new List<int>();
             Moves = 0;
 
@@ -52,7 +54,7 @@ namespace MemoryLogic
             for (int x = 0; x < SizeX; x++)
                 for (int y = 0; y < SizeY; y++)
                 {
-                    int index = rnd.Next(values.Count);
+                    int index = Draw.Next(values.Count);
                     _board[x, y] = new PositionInfo()
                     {
                         X = x,

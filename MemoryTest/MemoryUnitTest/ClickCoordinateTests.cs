@@ -13,7 +13,7 @@ namespace MemoryUnitTest
         [TestInitialize]
         public void Setup()
         {
-            _underTest = new MemoryGame(3, 3);
+            _underTest = new MemoryGame(3, 3,new SB());
         }
 
         [TestMethod]
@@ -69,7 +69,7 @@ namespace MemoryUnitTest
         public void ClickCoordinateShouldSetCoordinatesToIsFoundIfMatched()
         {
             // Arrange
-            var game = new MemoryGame(2, 1);
+            var game = new MemoryGame(2, 1, new SB());
             
             // Act
             game.ClickCoordinate();
@@ -86,18 +86,25 @@ namespace MemoryUnitTest
         public void ClickCoordinateShouldNotSetCoordinatesToIsFoundIfMissmatched()
         {
             // Arrange
-            
+            var draw = A.Fake<ISB>();
+            A.CallTo(() => draw.Next(A<int>.Ignored)).ReturnsNextFromSequence(0,0,0,0);
+            _underTest = new MemoryGame(2,2,draw);
             // Act
-            
+
+            _underTest.Update(ConsoleKey.Spacebar);
+            _underTest.Update(ConsoleKey.RightArrow);
+            _underTest.Update(ConsoleKey.Spacebar);
+
             // Assert
-            Assert.AreEqual(true, false);
+            Assert.AreEqual(false, _underTest.GetCoordinate(0, 0).IsFound);
+            Assert.AreEqual(false, _underTest.GetCoordinate(0, 1).IsFound);
         }
 
         [TestMethod]
         public void ClickCoordinateShouldBeAbleToWin()
         {
             // Arrange
-            var game = new MemoryGame(2,1);
+            var game = new MemoryGame(2,1, new SB());
 
             // Act
             game.ClickCoordinate();
