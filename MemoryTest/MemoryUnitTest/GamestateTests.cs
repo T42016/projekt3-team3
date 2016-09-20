@@ -11,7 +11,7 @@ namespace MemoryUnitTest
         public void AllFoundShouldSetGameStateToWon()
         {
             // Arrange
-            var game = new MemoryGame(2, 1);
+            var game = new MemoryGame(2, 1, new SB());
 
             // Act
             game.ClickCoordinate();

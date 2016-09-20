@@ -11,7 +11,7 @@ namespace MemoryUnitTest
         public void ResetBoardShouldSetGameStateToRunning()
         {
             //Arrange
-            var game = new MemoryGame(2,1);
+            var game = new MemoryGame(2,1, new SB());
 
             game.ClickCoordinate();
             game.Update(ConsoleKey.RightArrow);
