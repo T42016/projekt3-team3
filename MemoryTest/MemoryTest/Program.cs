@@ -51,7 +51,7 @@ namespace MemoryTest
                             break;
                         }
 
-                        MemoryGame game = new MemoryGame(x,y);
+                        MemoryGame game = new MemoryGame(x, y, new SB());
 
                         while (game.state == MemoryGame.Gamestate.Running)
                         {

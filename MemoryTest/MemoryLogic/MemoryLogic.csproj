@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Draw.cs" />
+    <Compile Include="ServiceBus.cs" />
     <Compile Include="DrawBoard.cs" />
     <Compile Include="MemoryGame.cs" />
     <Compile Include="PositionInfo.cs" />

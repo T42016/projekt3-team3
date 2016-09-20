@@ -120,7 +120,6 @@ namespace MemoryLogic
                         allFound = false;
                     }
                 }
-                
             }
 
             if (allFound)
@@ -142,7 +141,7 @@ namespace MemoryLogic
                     posY++;
             if (key == ConsoleKey.R)
                     ResetBoard();
-            if (key == ConsoleKey.Spacebar)
+            if (key == ConsoleKey.Spacebar || key == ConsoleKey.Enter)
                     ClickCoordinate();
 
             _drawBoard.Draw();
