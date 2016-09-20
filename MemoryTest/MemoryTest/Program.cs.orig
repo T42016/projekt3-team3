@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using MemoryLogic;
 
@@ -9,76 +12,76 @@ namespace MemoryTest
 {
     class Program
     {
-        private static int posX = 0;
-        private static int posY = 0;
-        static MemoryGame game = new MemoryGame(4, 4);
-        private static char[] symbols = {'*', '!', 'w', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o'};
+<<<<<<< HEAD
+=======
+        static MemoryGame game = new MemoryGame(4, 4, new SB());
 
+>>>>>>> origin/feature-DrawBoard-Tests
         static void Main(string[] args)
         {
             while (true)
             {
                 Console.Clear();
-                DrawBoard();
-<<<<<<< HEAD
-                Console.WriteLine("Moves: " + game.Moves);
-=======
-                Console.WriteLine("Draws: " + game.Moves);
->>>>>>> origin/Testnstuff
-                if (game.HasMismatch)
-                    Console.WriteLine("Press any key");
+                Console.WriteLine("Choose what to do!");
+                Console.WriteLine("1. Play");
+                Console.WriteLine("2. Exit");
 
-                var key = Console.ReadKey();
+                string input = Console.ReadLine().ToLower();
 
-                if (game.HasMismatch)
+                switch (input)
                 {
-                    game.CloseMismatch();
-                    continue;
+                    case "1":
+                    case "play":
+                        int x;
+                        int y;
+                        Console.WriteLine("Choose board size: x,y");
+                        string boardInput = Console.ReadLine();
+
+                        try
+                        {
+                            x = int.Parse(boardInput[0].ToString());
+                            y = int.Parse(boardInput[2].ToString());
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Bad input!");
+                            Console.ReadKey();
+                            break;
+                        }
+
+                        if (x < 2 || x > 6 || y < 2 || y > 6 || x*y % 2 != 0)
+                        {
+                            Console.WriteLine("Bad input!");
+                            Console.ReadKey();
+                            break;
+                        }
+
+                        MemoryGame game = new MemoryGame(x,y);
+
+                        while (game.state == MemoryGame.Gamestate.Running)
+                        {
+                            var key = Console.ReadKey();
+                            game.Update(key.Key);
+                        }
+
+                        if (game.state == MemoryGame.Gamestate.Won)
+                        {
+                            Console.WriteLine("Press any key to return to the menu");
+                            Console.ReadKey();
+                            game.Update(ConsoleKey.R);
+                        }
+                        break;
+                    case "2":
+                    case "exit":
+                    case "quit":
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.WriteLine("Bad input!");
+                        Console.ReadKey();
+                        break;
                 }
-
-                if (key.Key == ConsoleKey.LeftArrow && posX > 0)
-                    posX--;
-                if (key.Key == ConsoleKey.RightArrow && posX < game.SizeX - 1)
-                    posX++;
-                if (key.Key == ConsoleKey.UpArrow && posY > 0)
-                    posY--;
-                if (key.Key == ConsoleKey.DownArrow && posY < game.SizeY - 1)
-                    posY++;
-                if(key.Key == ConsoleKey.R)
-                    game.ResetBoard();
-                if (key.Key == ConsoleKey.Spacebar)
-                    game.ClickCoordinate(posX, posY);
             }
-        }
-
-        static void DrawBoard()
-        {
-            for (int y = 0; y < game.SizeY; y++)
-            {
-                for (int x = 0; x < game.SizeX; x++)
-                {
-                    if (x == posX && y == posY)
-                        Console.BackgroundColor = ConsoleColor.DarkCyan;
-                    else
-                        Console.BackgroundColor = ConsoleColor.Black;
-
-                    var info = game.GetCoordinate(x, y);
-                    if (info.IsOpen)
-                    {
-                        Console.ForegroundColor = info.IsFound ? ConsoleColor.Green : ConsoleColor.Cyan;
-                        Console.Write(symbols[info.Value] + " ");
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Gray;
-                        Console.Write(". ");
-                    }
-                }
-                Console.WriteLine();
-            }
-            Console.ForegroundColor = ConsoleColor.Gray;
-            Console.BackgroundColor = ConsoleColor.Black;
-        }
-
+        }    
     }
 }
