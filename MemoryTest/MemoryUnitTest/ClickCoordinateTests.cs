@@ -13,7 +13,7 @@ namespace MemoryUnitTest
         [TestInitialize]
         public void Setup()
         {
-            _underTest = new MemoryGame(3, 3,new SB());
+            _underTest = new MemoryGame(4, 4, new SB());
         }
 
         [TestMethod]
@@ -33,7 +33,7 @@ namespace MemoryUnitTest
             // Arrange via Setup
 
             // Act
-            _underTest.ClickCoordinate();
+            _underTest.Update(ConsoleKey.Spacebar);
 
             // Assert
             Assert.AreEqual(true, _underTest.GetCoordinate(_underTest.posX, _underTest.posY).IsOpen);
@@ -43,10 +43,10 @@ namespace MemoryUnitTest
         public void ClickCoordinateShouldNotCloseOpenedCoordinate()
         {
             // Arrange
-            _underTest.ClickCoordinate();
+            _underTest.Update(ConsoleKey.Spacebar);
 
             // Act
-            _underTest.ClickCoordinate();
+            _underTest.Update(ConsoleKey.Spacebar);
 
             // Assert
             Assert.AreEqual(true, _underTest.GetCoordinate(_underTest.posX, _underTest.posY).IsOpen);
@@ -59,10 +59,12 @@ namespace MemoryUnitTest
             var moves = _underTest.Moves;
 
             // Act
-            _underTest.ClickCoordinate();
+            _underTest.Update(ConsoleKey.Spacebar);
+            _underTest.Update(ConsoleKey.RightArrow);
+            _underTest.Update(ConsoleKey.Spacebar);
 
             // Assert
-            Assert.AreEqual(moves + 1, _underTest.Moves + 1);
+            Assert.AreEqual(moves + 1, _underTest.Moves);
         }
 
         [TestMethod]
@@ -70,12 +72,11 @@ namespace MemoryUnitTest
         {
             // Arrange
             var game = new MemoryGame(2, 1, new SB());
-            
+
             // Act
-            game.ClickCoordinate();
+            game.Update(ConsoleKey.Spacebar);
             game.Update(ConsoleKey.RightArrow);
-            
-            game.ClickCoordinate();
+            game.Update(ConsoleKey.Spacebar);
 
             // Assert
             Assert.AreEqual(true, game.GetCoordinate(0, 0).IsFound);
@@ -107,10 +108,9 @@ namespace MemoryUnitTest
             var game = new MemoryGame(2,1, new SB());
 
             // Act
-            game.ClickCoordinate();
+            game.Update(ConsoleKey.Spacebar);
             game.Update(ConsoleKey.RightArrow);
-
-            game.ClickCoordinate();
+            game.Update(ConsoleKey.Spacebar);
 
             // Assert
             Assert.AreEqual(MemoryGame.Gamestate.Won, game.state);
