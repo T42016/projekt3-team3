@@ -12,7 +12,7 @@ namespace MemoryUnitTest
         [TestInitialize]
         public void Setup()
         {
-            _underTest = new MemoryGame(3, 3);
+            _underTest = new MemoryGame(4, 4);
         }
 
         [TestMethod]
