@@ -24,10 +24,10 @@ namespace MemoryUnitTest
             int x = 2;
             int y = 2;
             _underTest = new MemoryGame(x, y, draw);
+
             // Act
 
             // Assert
-            
             A.CallTo(() => draw.Write(". ")).MustHaveHappened();
         }
         [TestMethod]
@@ -38,11 +38,11 @@ namespace MemoryUnitTest
             int x = 2;
             int y = 1;
             _underTest = new MemoryGame(x, y, draw);
+
             // Act
             _underTest.Update(ConsoleKey.Spacebar);
             
             // Assert
-
             A.CallTo(() => draw.Write("* ")).MustHaveHappened();
         }
         [TestMethod]
@@ -53,6 +53,7 @@ namespace MemoryUnitTest
             int x = 2;
             int y = 2;
             _underTest = new MemoryGame(x, y, draw);
+
             // Act
 
             // Assert
@@ -66,8 +67,10 @@ namespace MemoryUnitTest
             int x = 2;
             int y = 1;
             _underTest = new MemoryGame(x, y, draw);
+
             // Act
             _underTest.Update(ConsoleKey.Spacebar);
+
             // Assert
 
             A.CallTo(() => draw.Write("* ")).MustHaveHappened(Repeated.Exactly.Once);
@@ -80,8 +83,6 @@ namespace MemoryUnitTest
             int x = 4;
             int y = 4;
             _underTest = new MemoryGame(x,y,draw);
-
-           
 
             // Act
 

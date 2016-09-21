@@ -15,18 +15,7 @@ namespace MemoryUnitTest
         {
             _underTest = new MemoryGame(4, 4, new SB());
         }
-
-        [TestMethod]
-        public void ClickCoordinateShouldCallGetCoordinate()
-        {
-            // Arrange via Setup
-            
-            // Act
-            
-            // Assert
-
-        }
-
+        
         [TestMethod]
         public void ClickCoordinateShouldOpenCoordinate()
         {
