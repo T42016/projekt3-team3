@@ -46,7 +46,7 @@ namespace MemoryUnitTest
             A.CallTo(() => draw.Write("* ")).MustHaveHappened();
         }
         [TestMethod]
-        public void DrawBoardShouldDrawRightNumberOfUnOpenedPositions()
+        public void DrawBoardShouldDrawCorrectNrOfUnOpenedPositions()
         {
             // Arrange
             var draw = A.Fake<ISB>();
@@ -60,7 +60,7 @@ namespace MemoryUnitTest
             A.CallTo(() => draw.Write(". ")).MustHaveHappened(Repeated.Exactly.Times(x * y));
         }
         [TestMethod]
-        public void DrawBoardShouldDrawNnrOpenedPositions()
+        public void DrawBoardShouldDrawCorrectNrOfOpenedPositions()
         {
             // Arrange
             var draw = A.Fake<ISB>();
