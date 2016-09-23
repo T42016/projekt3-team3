@@ -44,7 +44,6 @@ namespace MemoryLogic
 
         public void ResetBoard()
         {
-           
             List<int> values = new List<int>();
             Moves = 0;
 

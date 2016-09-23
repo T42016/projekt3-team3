@@ -14,13 +14,16 @@ namespace MemoryLogic
         void Clear();
         int Next(int max);
     }
+
     public class SB : ISB
     {
         Random r = new Random();
+
         public void WriteLine(string s)
         {
             Console.WriteLine(s);
         }
+
         public void Write(string s)
         {
             Console.Write(s);
@@ -30,14 +33,15 @@ namespace MemoryLogic
         {
             return Console.ReadLine();
         }
+
         public void Clear()
         {
             Console.Clear();
         }
+
         public int Next(int max)
         {
             return r.Next(0,max);
         }
-       
     }
 }
