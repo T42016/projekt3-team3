@@ -16,7 +16,6 @@ namespace MemoryUnitTest
             // Act
             game.ClickCoordinate();
             game.Update(ConsoleKey.RightArrow);
-
             game.ClickCoordinate();
 
             // Assert

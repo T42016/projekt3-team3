@@ -88,5 +88,6 @@ namespace MemoryUnitTest
             // Assert
             A.CallTo(() => draw.Write(A<string>.Ignored)).MustHaveHappened(Repeated.Exactly.Times(x*y));
         }
+
     }
 }
