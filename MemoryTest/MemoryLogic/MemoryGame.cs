@@ -122,7 +122,7 @@ namespace MemoryLogic
             }
 
             if (allFound)
-                GameWon();
+                state = Gamestate.Won;
         }
 
         public void Update(ConsoleKey key)
@@ -144,13 +144,6 @@ namespace MemoryLogic
                     ClickCoordinate();
 
             _drawBoard.Draw();
-        }
-
-        private void GameWon()
-        {
-            state = Gamestate.Won;
-            Console.WriteLine("You won!");
-            Console.WriteLine("Press any key to return to the main menu");
         }
     }
 }

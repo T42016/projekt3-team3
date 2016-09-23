@@ -61,6 +61,7 @@ namespace MemoryTest
 
                         if (game.state == MemoryGame.Gamestate.Won)
                         {
+                            Console.WriteLine("You won!");
                             Console.WriteLine("Press any key to return to the menu");
                             Console.ReadKey();
                             game.Update(ConsoleKey.R);
