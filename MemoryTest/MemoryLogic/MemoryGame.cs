@@ -110,11 +110,11 @@ namespace MemoryLogic
             }
 
             allFound = true;
-            for (int X = 0; X < SizeX; X++)
+            for (int x = 0; x < SizeX; x++)
             {
-                for (int Y = 0; Y < SizeY; Y++)
+                for (int y = 0; y < SizeY; y++)
                 {
-                    if (!_board[X, Y].IsFound)
+                    if (!_board[x, y].IsFound)
                     {
                         allFound = false;
                     }
@@ -122,7 +122,7 @@ namespace MemoryLogic
             }
 
             if (allFound)
-                state = Gamestate.Won;
+                GameWon();
         }
 
         public void Update(ConsoleKey key)
@@ -148,9 +148,9 @@ namespace MemoryLogic
 
         private void GameWon()
         {
-            Console.WriteLine("You won");
-            Console.ReadLine();
-            ResetBoard();
+            state = Gamestate.Won;
+            Console.WriteLine("You won!");
+            Console.WriteLine("Press any key to return to the main menu");
         }
     }
 }

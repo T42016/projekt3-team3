@@ -13,10 +13,10 @@ namespace MemoryUnitTest
             //Arrange
             var game = new MemoryGame(2,1, new SB());
 
-            game.ClickCoordinate();
+            game.Update(ConsoleKey.Spacebar);
             game.Update(ConsoleKey.RightArrow);
 
-            game.ClickCoordinate();
+            game.Update(ConsoleKey.Spacebar);
 
             var state = game.state;
 

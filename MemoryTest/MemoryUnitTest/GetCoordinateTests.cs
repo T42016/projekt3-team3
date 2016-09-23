@@ -36,7 +36,7 @@ namespace MemoryUnitTest
             var coord = _underTest.GetCoordinate(2, 1);
 
             // Assert
-            Assert.AreEqual(coord.X,2);
+            Assert.AreEqual(coord.X, 2);
         }
 
         [TestMethod]
